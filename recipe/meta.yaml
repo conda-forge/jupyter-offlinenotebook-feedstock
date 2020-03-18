@@ -1,18 +1,18 @@
 {% set name = "jupyter-offlinenotebook" %}
-{% set version = "0.0.11" %}
+{% set version = "0.1.0" %}
 
 package:
-  name: "{{ name|lower }}"
-  version: "{{ version }}"
+  name: {{ name|lower }}
+  version: {{ version }}
 
 source:
-  url: "https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz"
-  sha256: 1120665636469dc72128c5dea571afd8e6a47a6aa740bdc233432f9a35581f6b
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: 47d1032bca9402030ada4bdeb1c68b82d9e427ddb29fce2f48186a229d0f51c5
 
 build:
   number: 0
   noarch: python
-  script: "{{ PYTHON }} -m pip install . -vv"
+  script: {{ PYTHON }} -m pip install . -vv
 
 requirements:
   host:
@@ -31,13 +31,13 @@ test:
     - python -m pip check
 
 about:
-  home: "https://github.com/manics/jupyter-offlinenotebook"
+  home: https://github.com/manics/jupyter-offlinenotebook
   license: BSD-3-Clause
   license_family: BSD
   license_file:
     - LICENSE
     - LICENSE.dexie
-  summary: "Save and load notebooks to local-storage"
+  summary: Save and load notebooks to local-storage
 
 extra:
   recipe-maintainers:
