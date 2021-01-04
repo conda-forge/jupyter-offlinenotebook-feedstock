@@ -21,11 +21,11 @@ requirements:
     - jupyter-packaging >=0.7.9
     - jupyterlab >=3
     - pip
-    - python
+    - python >=3.6
   run:
     # This package also includes an extension for JupyterLab 3
     - notebook
-    - python
+    - python >=3.6
 
 test:
   imports:
