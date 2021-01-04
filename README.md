@@ -5,11 +5,9 @@ Home: https://github.com/manics/jupyter-offlinenotebook
 
 Package license: BSD-3-Clause
 
-Feedstock license: BSD 3-Clause
+Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/jupyter-offlinenotebook-feedstock/blob/master/LICENSE.txt)
 
-Summary: Save and load notebooks to local-storage
-
-
+Summary: Save and load notebooks to local-storage. Supports Notebook and JupyterLab.
 
 Current build status
 ====================
@@ -116,5 +114,6 @@ In order to produce a uniquely identifiable distribution:
 Feedstock Maintainers
 =====================
 
+* [@manics](https://github.com/manics/)
 * [@xhochy](https://github.com/xhochy/)
 
