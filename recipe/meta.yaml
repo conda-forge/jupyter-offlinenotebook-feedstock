@@ -20,6 +20,7 @@ requirements:
     # JupyterLab 3 is required for building since jlpm is used to compile the javscript assets, but the resulting package works with Notebook, JupyterLab 2, JupyterLab 3
     - jupyter-packaging >=0.7.9
     - jupyterlab >=3
+    - nodejs
     - pip
     - python >=3.6
   run:
