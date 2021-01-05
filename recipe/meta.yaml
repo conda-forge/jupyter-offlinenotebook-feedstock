@@ -1,13 +1,14 @@
 {% set name = "jupyter-offlinenotebook" %}
-{% set version = "0.1.0" %}
+{% set pypiname = name.replace('-', '_') %}
+{% set version = "0.2.0" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 47d1032bca9402030ada4bdeb1c68b82d9e427ddb29fce2f48186a229d0f51c5
+  url: https://pypi.io/packages/source/{{ pypiname[0] }}/{{ pypiname }}/{{ pypiname }}-{{ version }}.tar.gz
+  sha256: 5dd4f171a52798f808ac55a0d4b8b2bd42193577eeec3d88363033db231042f7
 
 build:
   number: 0
@@ -16,11 +17,16 @@ build:
 
 requirements:
   host:
+    # JupyterLab 3 is required for building since jlpm is used to compile the javscript assets, but the resulting package works with Notebook, JupyterLab 2, JupyterLab 3
+    - jupyter-packaging >=0.7.9
+    - jupyterlab >=3
+    - nodejs
     - pip
-    - python
+    - python >=3.6
   run:
+    # This package also includes an extension for JupyterLab 3
     - notebook
-    - python
+    - python >=3.6
 
 test:
   imports:
@@ -37,8 +43,9 @@ about:
   license_file:
     - LICENSE
     - LICENSE.dexie
-  summary: Save and load notebooks to local-storage
+  summary: Save and load notebooks to local-storage. Supports Notebook and JupyterLab.
 
 extra:
   recipe-maintainers:
+    - manics
     - xhochy
