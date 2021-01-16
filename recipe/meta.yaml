@@ -1,6 +1,6 @@
 {% set name = "jupyter-offlinenotebook" %}
 {% set pypiname = name.replace('-', '_') %}
-{% set version = "0.2.0" %}
+{% set version = "0.2.1" %}
 
 package:
   name: {{ name|lower }}
@@ -8,7 +8,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ pypiname[0] }}/{{ pypiname }}/{{ pypiname }}-{{ version }}.tar.gz
-  sha256: 5dd4f171a52798f808ac55a0d4b8b2bd42193577eeec3d88363033db231042f7
+  sha256: af078fd022075b949022cdde4d870bc2de8b177e75d875757ab769491f114b82
 
 build:
   number: 0
