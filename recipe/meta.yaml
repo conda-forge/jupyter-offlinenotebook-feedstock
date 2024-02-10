@@ -17,12 +17,13 @@ build:
 
 requirements:
   host:
-    # JupyterLab 3 is required for building since jlpm is used to compile the javscript assets, but the resulting package works with Notebook, JupyterLab 2, JupyterLab 3
+    # JupyterLab 3 is required for building since jlpm is used to compile the javascript assets, the resulting package works with JupyterLab 3, 4, and nbclassic
     - jupyter-packaging >=0.7.9
     - jupyterlab >=3
     - nodejs
     - pip
     - python >=3.7
+    - wheel
   run:
     # This package also includes an extension for JupyterLab 3
     - jupyter_server
