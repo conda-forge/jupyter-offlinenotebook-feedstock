@@ -22,11 +22,11 @@ requirements:
     - jupyterlab >=3
     - nodejs
     - pip
-    - python >=3.6
+    - python >=3.7
   run:
     # This package also includes an extension for JupyterLab 3
-    - notebook
-    - python >=3.6
+    - jupyter_server
+    - python >=3.7
 
 test:
   imports:
