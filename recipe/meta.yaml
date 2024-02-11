@@ -1,6 +1,6 @@
 {% set name = "jupyter-offlinenotebook" %}
 {% set pypiname = name.replace('-', '_') %}
-{% set version = "0.2.2" %}
+{% set version = "0.3.0" %}
 
 package:
   name: {{ name|lower }}
@@ -8,7 +8,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ pypiname[0] }}/{{ pypiname }}/{{ pypiname }}-{{ version }}.tar.gz
-  sha256: f9ed52d032faa7a6ddf1317cce44835a0a57c5551d6819f106469b9d9a39d3fb
+  sha256: 8000498e17e59cb1e85756f2f7ed2755a0f4e92d581c480ffe7c2da91d8fbf16
 
 build:
   number: 0
@@ -25,6 +25,7 @@ requirements:
     - python >=3.6
   run:
     # This package also includes an extension for JupyterLab 3
+    - jupyter_server
     - notebook
     - python >=3.6
 
