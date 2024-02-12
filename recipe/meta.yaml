@@ -1,6 +1,6 @@
 {% set name = "jupyter-offlinenotebook" %}
 {% set pypiname = name.replace('-', '_') %}
-{% set version = "0.2.2" %}
+{% set version = "0.3.1rc1" %}
 
 package:
   name: {{ name|lower }}
@@ -8,33 +8,41 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ pypiname[0] }}/{{ pypiname }}/{{ pypiname }}-{{ version }}.tar.gz
-  sha256: f9ed52d032faa7a6ddf1317cce44835a0a57c5551d6819f106469b9d9a39d3fb
+  sha256: 8c1dadd36ddcc794749bb725a792a7f03d4f21f2e374ca391c5a179558f37426
 
 build:
   number: 0
   noarch: python
-  script: {{ PYTHON }} -m pip install . -vv
+  script:
+    - {{ PYTHON }} -m pip install . --no-build-isolation --no-deps -vv
 
 requirements:
   host:
-    # JupyterLab 3 is required for building since jlpm is used to compile the javscript assets, but the resulting package works with Notebook, JupyterLab 2, JupyterLab 3
-    - jupyter-packaging >=0.7.9
-    - jupyterlab >=3
-    - nodejs
+    - jupyter-packaging ~=0.12.3
+    # JupyterLab is required for building since jlpm is used to compile the javascript assets
+    # but the resulting package works with Notebook and JupyterLab
+    - jupyterlab ~=4.0
+    - nodejs >=18
     - pip
-    - python >=3.6
+    - python >=3.7
+    - setuptools-scm >=8
+    - wheel
   run:
-    # This package also includes an extension for JupyterLab 3
-    - notebook
-    - python >=3.6
+    - jupyter_server
+    - python >=3.7
+  run_constrained:
+    - jupyterlab >=3,<5
 
 test:
   imports:
     - jupyter_offlinenotebook
   requires:
+    - jupyterlab
     - pip
   commands:
     - python -m pip check
+    - jupyter labextension list 2>&1 | grep -e 'jupyter-offlinenotebook.*enabled'
+    - jupyter server extension list 2>&1 | grep -e 'jupyter_offlinenotebook.*enabled'
 
 about:
   home: https://github.com/manics/jupyter-offlinenotebook
