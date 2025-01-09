@@ -7,11 +7,11 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ pypiname[0] }}/{{ pypiname }}/{{ pypiname }}-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ pypiname[0] }}/{{ pypiname }}/{{ pypiname }}-{{ version }}.tar.gz
   sha256: 914f9c72f1c085f4a771b61ad28b7ee737a7e1b613388ec74556815c8eb93d3b
 
 build:
-  number: 0
+  number: 1
   noarch: python
   script:
     - {{ PYTHON }} -m pip install . --no-build-isolation --no-deps -vv
@@ -24,12 +24,12 @@ requirements:
     - jupyterlab ~=4.0
     - nodejs >=18
     - pip
-    - python >=3.7
+    - python {{ python_min }}
     - setuptools-scm >=8
     - wheel
   run:
     - jupyter_server
-    - python >=3.7
+    - python >={{ python_min }}
   run_constrained:
     - jupyterlab >=3,<5
 
@@ -39,6 +39,7 @@ test:
   requires:
     - jupyterlab
     - pip
+    - python {{ python_min }}
   commands:
     - python -m pip check
     - jupyter labextension list 2>&1 | grep -e 'jupyter-offlinenotebook.*enabled'
